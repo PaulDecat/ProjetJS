@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Frontpage.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -18,9 +19,9 @@
                 <input type="number" id="amount" name="amount" required>
                 <label for="category">Catégorie :</label>
                 <select id="category" name="category" required>
-                    <option value="nourriture">Nourriture</option>
-                    <option value="loisirs">Loisirs</option>
-                    <option value="transport">Transport</option>
+                    <option value="nourriture">type de dépense 1</option>
+                    <option value="loisirs">type de dépense 2</option>
+                    <option value="transport">type de dépense 3</option>
                 </select>
                 <button type="submit">Ajouter Transaction</button>
             </form>
@@ -28,7 +29,29 @@
         <section id="budget-summary">
             <h2>Résumé du Budget</h2>
             <div id="chart-container">
-                
+                <canvas id="myChart"></canvas>
+                <script>
+                    const ctx = document.getElementById('myChart');
+                  
+                    new Chart(ctx, {
+                      type: 'bar',
+                      data: {
+                        labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet','Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
+                        datasets: [{
+                          label: 'Expenses',
+                          data: [12, 19, 3, 5, 2, 3, 4, 8, 3, 11, 13, 8],
+                          borderWidth: 1
+                        }]
+                      },
+                      options: {
+                        scales: {
+                          y: {
+                            beginAtZero: true
+                          }
+                        }
+                      }
+                    });
+                  </script>
             </div>
             <div id="report">
                 
