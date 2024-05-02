@@ -3,9 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Frontpage.css">
     <title>Document</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Application de Gestion de Budgets</h1>
+    </header>
+    <main>
+        <section id="budget-form">
+            <h2>Ajouter une Transaction</h2>
+            <form id="transaction-form">
+                <label for="amount">Montant :</label>
+                <input type="number" id="amount" name="amount" required>
+                <label for="category">Catégorie :</label>
+                <select id="category" name="category" required>
+                    <option value="nourriture">Nourriture</option>
+                    <option value="loisirs">Loisirs</option>
+                    <option value="transport">Transport</option>
+                </select>
+                <button type="submit">Ajouter Transaction</button>
+            </form>
+        </section>
+        <section id="budget-summary">
+            <h2>Résumé du Budget</h2>
+            <div id="chart-container">
+                
+            </div>
+            <div id="report">
+                
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Application de Gestion de Budgets</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
