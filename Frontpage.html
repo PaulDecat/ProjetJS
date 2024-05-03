@@ -8,8 +8,29 @@
 </head>
 <body>
     <div class="Rectanglev">
-        <p>"Bienvenue dans la page de gestion de votre budget"\n</p>
-        <img src="./static/deno.png"/>
+        <br>
+        <br>
+        <h2 style= "text-align: center;">Bienvenue dans la page de gestion de votre budget</h2>
+        
     </div>
+    <br>
+    <div class="Info">
+        <form action="/url" method="GET">
+            <label for="username"><strong>     Veuillez entrer votre prénom:</strong></label>
+                <input type="text" id="prénom" name="prénom" minlength="3" maxlength="20" required>
+            <button type="submit">Submit</button>
+            <br>
+            <br>
+            <label for="username"><strong>     Veuillez entrer votre nom:</strong></label>
+                <input type="text" id="nom" name="nom" minlength="3" maxlength="20" required>
+            <button type="submit">Submit</button>
+            <br>
+            <br>
+            <label for="username"><strong>     Veuillez entrer votre budget:</strong></label>
+                <input type="number" id="budget" name="budget" minlength="3" maxlength="20" required>
+            <button type="submit">Submit</button>  
+        </form>
+    </div>
+    
 </body>
 </html>
