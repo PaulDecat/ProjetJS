@@ -16,20 +16,24 @@
     <br>
     <div class="Info">
         <form action="/url" method="GET">
-            <label for="username"><strong>     Veuillez entrer votre prénom:</strong></label>
-                <input type="text" id="prénom" name="prénom" minlength="3" maxlength="20" required>
+            <label for="username"><strong>     Veuillez entrer votre 1er revenu(travail):</strong></label>
+                <input type="number" id="travail" name="travail" minlength="1" maxlength="30" required>
             <button type="submit">Submit</button>
             <br>
             <br>
-            <label for="username"><strong>     Veuillez entrer votre nom:</strong></label>
-                <input type="text" id="nom" name="nom" minlength="3" maxlength="20" required>
+            <label for="username"><strong>     Veuillez entrer votre 2eme revenu(investissement):</strong></label>
+                <input type="number" id="investissement" name="investissement" minlength="1" maxlength="30" required>
             <button type="submit">Submit</button>
             <br>
             <br>
-            <label for="username"><strong>     Veuillez entrer votre budget:</strong></label>
-                <input type="number" id="budget" name="budget" minlength="3" maxlength="20" required>
+            <label for="username"><strong>     Veuillez entrer votre 3eme revenu(autres):</strong></label>
+                <input type="number" id="autres" name="autres" minlength="1" maxlength="30" required>
             <button type="submit">Submit</button>  
         </form>
+    </div>
+
+    <div class="piechart">
+
     </div>
     
 </body>
