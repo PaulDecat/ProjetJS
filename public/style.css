@@ -1,9 +1,20 @@
-.body {
-
+body {
+    background-color:#A4A1AD;
 }
 
 .Rectanglev {
-    background-color: green;
-    width: 50px;
-    height: 100px;
+    background: linear-gradient(green, lightgreen);
+    width: 1400px;
+    height: 150px;
+    border-radius: 20px;
+    align-items: center;
+    
+}
+
+.Info {
+    background-color:  lightgreen;
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+
 }

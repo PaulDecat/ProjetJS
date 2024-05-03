@@ -1,6 +1,8 @@
 import { createServer, IncomingMessage, ServerResponse } from "node:http";
 import { readFile,  } from "node:fs";
 import mime from 'npm:mime';
+import qs from 'npm:querystring';
+
 
 export class Launch {
     SERV: any;
@@ -43,6 +45,18 @@ export class Launch {
                     res.write(data);
                     return res.end();
                 });
+            } else if (req.url === '/url'){
+                let body = "";
+        req.on("data", function (chunk) {
+            body += chunk;
+        });
+
+        req.on("end", function(){
+            const data = qs.parse(body);
+            console.log(data);
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify(data));
+        });
              
             } else {
                 res.writeHead(404);
@@ -55,6 +69,7 @@ export class Launch {
         });
     }
 }
+
 
 const myLaunch = new Launch();
 myLaunch.startServer();
