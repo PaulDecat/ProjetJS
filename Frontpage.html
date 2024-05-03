@@ -11,25 +11,53 @@
         <br>
         <br>
         <h2 style= "text-align: center;">Bienvenue dans la page de gestion de votre budget</h2>
+
+        <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+            <div class="wheel"></div>
+            <div class="hamster">
+                <div class="hamster__body">
+                    <div class="hamster__head">
+                        <div class="hamster__ear"></div>
+                        <div class="hamster__eye"></div>
+                        <div class="hamster__nose"></div>
+                    </div>
+                    <div class="hamster__limb hamster__limb--fr"></div>
+                    <div class="hamster__limb hamster__limb--fl"></div>
+                    <div class="hamster__limb hamster__limb--br"></div>
+                    <div class="hamster__limb hamster__limb--bl"></div>
+                    <div class="hamster__tail"></div>
+                </div>
+            </div>
+            <div class="spoke"></div>
+        </div>
         
     </div>
     <br>
     <div class="Info">
         <form action="/url" method="POST">
-            <label for="username"><strong>     Veuillez entrer votre prénom:</strong></label>
-                <input type="text" id="prénom" name="prénom" minlength="1" maxlength="30" required>
+            <label for="firstinc"><strong>     Veuillez entrer votre 1er revenu(travail):</strong></label>
+                <input type="number" id="travail" name="travail" minlength="1" maxlength="30" required>
             <button type="submit">Submit</button>
             <br>
             <br>
-            <label for="username"><strong>     Veuillez entrer votre nom:</strong></label>
-                <input type="text" id="nom" name="nom" minlength="3" maxlength="20" required>
+            <label for="secondinc"><strong>     Veuillez entrer votre 2eme revenu(investissement):</strong></label>
+                <input type="number" id="investissement" name="investissement" minlength="1" maxlength="30" required>
             <button type="submit">Submit</button>
             <br>
             <br>
-            <label for="username"><strong>     Veuillez entrer votre budget:</strong></label>
-                <input type="number" id="budget" name="budget" minlength="3" maxlength="20" required>
-            <button type="submit">Submit</button>  
+            <label for="thirdinc"><strong>     Veuillez entrer votre 3eme revenu(autres):</strong></label>
+                <input type="number" id="autres" name="autres" minlength="1" maxlength="30" required>
+            <button type="submit">Submit</button>
+            <br>
+            <br>
+            <label for="expenseact"><strong>     Veuillez entrer votre depense actuelle:</strong></label>
+                <input type="number" id="depense" name="depense" minlength="1" maxlength="30" required>
+            <button type="submit">Submit</button>   
         </form>
+    </div>
+
+    <div class="piechart">
+
     </div>
     
 </body>
