@@ -5,7 +5,7 @@ export function parseFormData(formData: string): any {
         // Convertit l'objet en un objet JavaScript
         const expenseData: any = {};
         for (const [key, value] of parsedData.entries()) {
-            expenseData[key] = value;
+            expenseData[key] = parseInt(value);
         }
         return expenseData;
     } catch (error) {
