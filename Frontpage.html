@@ -1,71 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Frontpage.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="./static/style.css">
+    <title>Gestion de budget</title>
 </head>
 <body>
-    <header>
-        <h1>Application de Gestion de Budgets</h1>
-    </header>
-    <main>
-        <section id="budget-form">
-            <h2>Ajouter une Transaction</h2>
-            <form id="transaction-form">
-                <label for="amount">Montant :</label>
-                <input type="number" id="amount" name="amount" required>
-                <label for="category">Catégorie :</label>
-                <select id="category" name="category" required>
-                    <option value="nourriture">type de dépense 1</option>
-                    <option value="loisirs">type de dépense 2</option>
-                    <option value="transport">type de dépense 3</option>
-                </select>
-                <button type="submit">Ajouter Transaction</button>
-            </form>
-        </section>
-        <section id="budget-summary">
-            <h2>Résumé du Budget</h2>
-            <div id="chart-container">
-                <canvas id="myChart"></canvas>
-                <script>
-                    const ctx = document.getElementById('myChart');
-                  
-                    new Chart(ctx, {
-                      type: 'bar',
-                      data: {
-                        labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet','Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
-                        datasets: [{
-                          label: 'Expenses',
-                          data: [12, 19, 3, 5, 2, 3, 4, 8, 3, 11, 13, 8],
-                          borderWidth: 1
-                        }]
-                      },
-                      options: {
-                        scales: {
-                          y: {
-                            beginAtZero: true
-                          }
-                        }
-                      }
-                    });
-                  </script>
+    <div class="Rectanglev">
+        <br>
+        <br>
+        <h2 style= "text-align: center;">Bienvenue dans la page de gestion de votre budget</h2>
+
+        <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+            <div class="wheel"></div>
+            <div class="hamster">
+                <div class="hamster__body">
+                    <div class="hamster__head">
+                        <div class="hamster__ear"></div>
+                        <div class="hamster__eye"></div>
+                        <div class="hamster__nose"></div>
+                    </div>
+                    <div class="hamster__limb hamster__limb--fr"></div>
+                    <div class="hamster__limb hamster__limb--fl"></div>
+                    <div class="hamster__limb hamster__limb--br"></div>
+                    <div class="hamster__limb hamster__limb--bl"></div>
+                    <div class="hamster__tail"></div>
+                </div>
             </div>
-            <div id="report">
-                
-            </div>
-        </section>
-        <section id="budget-added-section" class="bottom-section">
-          <h2>Budget Ajouté</h2>
-          <!-- Contenu de la section du budget ajouté -->
-      </section>
-      
-      <section id="money-added-section" class="bottom-section">
-          <h2>Argent Ajouté</h2>
-          <!-- Contenu de la section de l'argent ajouté -->
-      </section>
-    </main>
+            <div class="spoke"></div>
+        </div>
+        
+    </div>
+    <br>
+    <div class="Info">
+        <form action="/url" method="POST">
+            <label for="firstinc"><strong>     Veuillez entrer votre 1er revenu(travail):</strong></label>
+                <input type="number" id="travail" name="travail" minlength="1" maxlength="30" required>
+            <button type="submit">Submit</button>
+            <br>
+            <br>
+            <label for="secondinc"><strong>     Veuillez entrer votre 2eme revenu(investissement):</strong></label>
+                <input type="number" id="investissement" name="investissement" minlength="1" maxlength="30" required>
+            <button type="submit">Submit</button>
+            <br>
+            <br>
+            <label for="thirdinc"><strong>     Veuillez entrer votre 3eme revenu(autres):</strong></label>
+                <input type="number" id="autres" name="autres" minlength="1" maxlength="30" required>
+            <button type="submit">Submit</button>
+            <br>
+            <br>
+            <label for="expenseact"><strong>     Veuillez entrer votre depense actuelle:</strong></label>
+                <input type="number" id="depense" name="depense" minlength="1" maxlength="30" required>
+            <button type="submit">Submit</button>   
+        </form>
+    </div>
+
+    <div class="piechart">
+
+    </div>
+    
 </body>
 </html>
