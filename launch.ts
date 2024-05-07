@@ -1,5 +1,6 @@
 import { createServer, IncomingMessage, ServerResponse } from "node:http";
 import { readFile,  } from "node:fs";
+import { parseFormData } from "./expense.ts";
 import mime from 'npm:mime';
 import qs from 'npm:querystring';
 
@@ -52,7 +53,8 @@ export class Launch {
         });
 
         req.on("end", function(){
-            const data = qs.parse(body);
+            // const data = qs.parse(body);
+            const data = parseFormData(body); // Utiliser la fonction pour convertir les données en objet
             console.log(data);
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end(JSON.stringify(data));
