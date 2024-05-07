@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Résultats du budget</title>
+</head>
+<body>
+    <h2>Résultats du budget</h2>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+
+    <script>
+        // Récupérer les données de l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const totalIncome = parseFloat(urlParams.get('totalIncome'));
+        const totalExpense = parseFloat(urlParams.get('totalExpense'));
+        const balance = parseFloat(urlParams.get('balance'));
+
+        // Créer le diagramme circulaire avec les données
+        const ctx = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Revenus totaux', 'Dépenses totales', 'Solde'],
+                datasets: [{
+                    label: 'Répartition des revenus et des dépenses',
+                    data: [totalIncome, totalExpense, balance],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)', // Rouge
+                        'rgba(54, 162, 235, 0.7)', // Bleu
+                        'rgba(255, 206, 86, 0.7)' // Jaune
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                // Options du diagramme circulaire
+            }
+        });
+    </script>
+    <script src="./launch.ts"></script>
+</body>
+</html>
