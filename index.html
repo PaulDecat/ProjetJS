@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+	<title>Gestionnaire de budget</title> 
+	<link rel="stylesheet" type="text/css" href="style.css" /> 
+</head> 
+
+<body> 
+	<div class="container"> 
+		<br>
+		<h1>Gestionnaire de budget</h1> 
+		<br>
+		<form id="expense-form"> 
+			<input type="text"
+				id="expense-name"
+				placeholder="Nom du montant" required /> 
+			<input type="number"
+				id="expense-amount"
+				placeholder="Montant" required /> 
+			<button type="submit"> 
+				Ajouter montant 
+			</button> 
+		</form> 
+		<br>
+		<div class="expense-table"> 
+			<table> 
+				<thead> 
+					<tr> 
+						<th>Nom du montant</th> 
+						<th>Montant</th> 
+						<th>Action</th> 
+					</tr> 
+				</thead> 
+				<tbody id="expense-list"></tbody> 
+			</table> 
+			<div class="total-amount"> 
+				<strong>Total:</strong> 
+				$<span id="total-amount">0</span> 
+			</div> 
+		</div> 
+	</div> 
+	<script src="script.js"></script> 
+</body> 
+
+</html>
