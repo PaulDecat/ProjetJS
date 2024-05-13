@@ -56,56 +56,53 @@
             <button type="submit">Submit</button>   
         </form>
     </div>
-    <canvas id="myChart"></canvas>
+
+    <canvas id="piechart" width ="400" height ="400"></canvas>
 
     <script>
         fetch('/url')
             .then(response => response.json())
             .then(data => {
-                const labels = ['Total Income', 'Total Expense', 'Balance'];
-                const values = [data.totalIncome, data.totalExpense, data.balance];
+                const expenses = [
+                    { label: 'Assurance', value: data.expenseAssu },
+                    { label: 'Logement', value: data.expenseLog },
+                    { label: 'Nourriture', value: data.expenseNou },
+                    { label: 'Abonnement', value: data.expenseAbo},
+                    { label: 'Sauvegarde', value: data.expenseSau },
+                    { label: 'Loisir', value: data.expenseAutre},
 
-                const ctx = document.getElementById('myChart').getContext('2d');
+                ];
+                const labels = expenses.map(expense => expense.label);
+                const values = expenses.map(expense => expense.value);
+                const ctx = document.getElementById('pieChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Dépenses',
+                            data: values,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.7)', // Rouge
+                                'rgba(54, 162, 235, 0.7)', // Bleu
+                                'rgba(255, 206, 86, 0.7)', // Jaune
+                                'rgba(75, 192, 192, 0.7)', // Vert
+                                'rgba(153, 102, 255, 0.7)', // Violet
+                                'rgba(255, 159, 64, 0.7)', // Orange
 
-                if (ctx) {
-                    new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Financial Overview',
-                                data: values,
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                ],
-                                borderColor: [
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(75, 192, 192, 1)',
-                                ],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-                }
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                    }
+                });
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => {
+                console.error('Erreur lors de la récupération des données des dépenses:', error);
+            });
+
     </script>
-
-
-
-    <div class="piechart">
-
-    </div>
-    
+    <script src="./launch.ts"></script>
 </body>
 </html>
