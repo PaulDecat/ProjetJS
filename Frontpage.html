@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Gestion de budget</title>
 </head>
 <body>
@@ -55,6 +56,52 @@
             <button type="submit">Submit</button>   
         </form>
     </div>
+    <canvas id="myChart"></canvas>
+
+    <script>
+        fetch('/url')
+            .then(response => response.json())
+            .then(data => {
+                const labels = ['Total Income', 'Total Expense', 'Balance'];
+                const values = [data.totalIncome, data.totalExpense, data.balance];
+
+                const ctx = document.getElementById('myChart').getContext('2d');
+
+                if (ctx) {
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Financial Overview',
+                                data: values,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+
+
 
     <div class="piechart">
 
