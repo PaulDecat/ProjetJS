@@ -34,7 +34,37 @@ Info:hover{
     outline: 1px solid lightgrey;
   }
 
+  /* Graphique */
 
+  .piechart {
+    width: 400px; /* ajustez selon vos besoins */
+    height: 200px; /* ajustez selon vos besoins */
+    margin: 0 auto; /* pour centrer le graphique */
+    position: relative;
+}
+
+.bar {
+    width: 30px; /* largeur des barres */
+    position: absolute;
+    bottom: 0;
+    transition: height 0.5s ease; /* animation de la hauteur lors de la mise à jour */
+}
+
+.income {
+    background-color: green;
+}
+
+.expense {
+    background-color: red;
+}
+
+.balance {
+    background-color: blue;
+}
+
+
+
+  /* hamster */
 .wheel-and-hamster {
     --dur: 1s;
     position: relative;

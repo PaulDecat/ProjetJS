@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./static/style.css">
+    <script src="script.js"></script>
     <title>Gestion de budget</title>
 </head>
 <body>
@@ -34,7 +35,7 @@
     </div>
     <br>
     <div class="Info">
-        <form action="/url" method="POST">
+        <form action="/url" method="POST" onsubmit="return submitForm()">
             <label for="firstinc"><strong>     Veuillez entrer votre 1er revenu(travail):</strong></label>
                 <input type="number" id="travail" name="travail" minlength="1" maxlength="30" required>
             <button type="submit">Submit</button>
@@ -56,9 +57,12 @@
         </form>
     </div>
 
-    <div class="piechart">
+        <!-- Graphique -->
+        <div class="piechart">
+            <div id="incomeBar" class="bar"></div>
+            <div id="expenseBar" class="bar"></div>
+            <div id="balanceBar" class="bar"></div>
+        </div>
 
-    </div>
-    
 </body>
 </html>

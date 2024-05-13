@@ -1,9 +1,6 @@
 import { createServer, IncomingMessage, ServerResponse } from "node:http";
-import { readFile,  } from "node:fs";
-import { parseFormData } from "./expense.ts";
+import { readFile } from "node:fs";
 import mime from 'npm:mime';
-import qs from 'npm:querystring';
-
 
 export class Launch {
     SERV: any;
@@ -19,7 +16,7 @@ export class Launch {
     startServer() {
         const server = this.SERV.http((req: IncomingMessage, res: ServerResponse) => {
             if (req.url === '/') {
-                const filePath = ('Frontpage.html');
+                const filePath = 'frontPage.html';
 
                 readFile(filePath, (err, data) => {
                     if (err) {
@@ -31,9 +28,34 @@ export class Launch {
                     res.write(data);
                     return res.end();
                 });
+            } else if (req.url === '/url' && req.method === 'POST') { // Modification ici pour traiter seulement les requêtes POST vers /url
+                let body = '';
+                req.on('data', (chunk) => {
+                    body += chunk;
+                });
+                req.on('end', () => {
+                    try {
+                        const data = JSON.parse(body);
+                        const totalIncome = data.travail + data.investissement + data.autres;
+                        const totalExpense = data.depense;
+                        const balance = totalIncome - totalExpense;
+                        const result = {
+                            totalIncome,
+                            totalExpense,
+                            balance
+                        };
+                        res.writeHead(200, { "Content-Type": "application/json" });
+                        res.end(JSON.stringify(result));
+                        console.log(result); // Affichage des données dans la console du serveur
+                    } catch (error) {
+                        console.error("Error parsing form data:", error);
+                        res.writeHead(500);
+                        res.end("Internal Server Error");
+                    }
+                });
             } else if (req.url?.startsWith('/static')) {
                 const fileName = req.url.replace('/static/', '');
-                const filePath = `public/${fileName}`;                
+                const filePath = `public/${fileName}`;
                 readFile(filePath, (err, data) => {
                     if (err) {
                         console.error(err);
@@ -46,37 +68,6 @@ export class Launch {
                     res.write(data);
                     return res.end();
                 });
-            } else if (req.url === '/url'){
-                let body = "";
-        req.on("data", function (chunk) {
-            body += chunk;
-        });
-
-        req.on("end", function(){
-            const data = parseFormData(body); // Utiliser la fonction pour convertir les données en objet
-            console.log(data);
-            res.writeHead(200, { "Content-Type": "application/json" });
-            res.end(JSON.stringify(data));
-
-        // Additionner les valeurs
-        const totalIncome = data.travail + data.investissement + data.autres;
-        const totalExpense = data.depense;
-
-        // Calculer le solde
-        const balance = totalIncome - totalExpense;
-
-        // Créer un objet pour renvoyer les résultats
-        const result = {
-            totalIncome,
-            totalExpense,
-            balance
-        };
-
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(result));
-        console.log(result);
-        });
-             
             } else {
                 res.writeHead(404);
                 res.end("404 Not Found");
@@ -88,7 +79,6 @@ export class Launch {
         });
     }
 }
-
 
 const myLaunch = new Launch();
 myLaunch.startServer();
