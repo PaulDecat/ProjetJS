@@ -1,5 +1,6 @@
 import { createServer, IncomingMessage, ServerResponse } from "node:http";
 import { readFile } from "node:fs";
+import { parseFormData } from "./expense.ts";
 import mime from 'npm:mime';
 
 export class Launch {
@@ -19,6 +20,21 @@ export class Launch {
                 const filePath = 'frontPage.html';
 
                 readFile(filePath, (err, data) => {
+                    if (err) {
+                        res.writeHead(404);
+                        res.end("404 Not Found");
+                        return;
+                    }
+                    
+                    
+                    res.writeHead(200, { 'Content-Type': 'text/html' });
+                    res.write(data);
+                    return res.end();
+                });
+            } else if (req.url === '/result') { 
+                const filePath2 = ('result.html');
+
+                readFile(filePath2, (err, data) => {
                     if (err) {
                         res.writeHead(404);
                         res.end("404 Not Found");
@@ -68,6 +84,26 @@ export class Launch {
                     res.write(data);
                     return res.end();
                 });
+            } else if (req.url === '/url'){
+                let body = "";
+                req.on("data", function (chunk) {
+                    body += chunk;
+                });
+
+                req.on("end", function(){
+                    const data = parseFormData(body); 
+                    console.log(data);
+                
+                    // Calcul des données du budget
+                    const totalIncome = data.travail + data.investissement + data.autres;
+                    const totalExpense = data.depense;
+                    const balance = totalIncome - totalExpense;
+                
+                    // Redirection vers la page "/result" avec les données du budget dans l'URL
+                    res.writeHead(302, { "Location": "/result" });
+                    res.end();
+                });
+                
             } else {
                 res.writeHead(404);
                 res.end("404 Not Found");

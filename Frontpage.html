@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./static/style.css">
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Gestion de budget</title>
 </head>
 <body>
@@ -35,7 +35,7 @@
     </div>
     <br>
     <div class="Info">
-        <form action="/url" method="POST" onsubmit="return submitForm()">
+        <form action="/url" method="POST">
             <label for="firstinc"><strong>     Veuillez entrer votre 1er revenu(travail):</strong></label>
                 <input type="number" id="travail" name="travail" minlength="1" maxlength="30" required>
             <button type="submit">Submit</button>
@@ -57,12 +57,52 @@
         </form>
     </div>
 
-        <!-- Graphique -->
-        <div class="piechart">
-            <div id="incomeBar" class="bar"></div>
-            <div id="expenseBar" class="bar"></div>
-            <div id="balanceBar" class="bar"></div>
-        </div>
+    <canvas id="piechart" width ="400" height ="400"></canvas>
 
+    <script>
+        fetch('/url')
+            .then(response => response.json())
+            .then(data => {
+                const expenses = [
+                    { label: 'Assurance', value: data.expenseAssu },
+                    { label: 'Logement', value: data.expenseLog },
+                    { label: 'Nourriture', value: data.expenseNou },
+                    { label: 'Abonnement', value: data.expenseAbo},
+                    { label: 'Sauvegarde', value: data.expenseSau },
+                    { label: 'Loisir', value: data.expenseAutre},
+
+                ];
+                const labels = expenses.map(expense => expense.label);
+                const values = expenses.map(expense => expense.value);
+                const ctx = document.getElementById('pieChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Dépenses',
+                            data: values,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.7)', // Rouge
+                                'rgba(54, 162, 235, 0.7)', // Bleu
+                                'rgba(255, 206, 86, 0.7)', // Jaune
+                                'rgba(75, 192, 192, 0.7)', // Vert
+                                'rgba(153, 102, 255, 0.7)', // Violet
+                                'rgba(255, 159, 64, 0.7)', // Orange
+
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des données des dépenses:', error);
+            });
+
+    </script>
+    <script src="./launch.ts"></script>
 </body>
 </html>
