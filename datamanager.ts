@@ -1,0 +1,1 @@
+//prendre les entrées faire les calculs et renvoyer au front
