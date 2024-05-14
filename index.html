@@ -2,45 +2,65 @@
 <html> 
 
 <head> 
-	<title>Gestionnaire de budget</title> 
-	<link rel="stylesheet" type="text/css" href="style.css" /> 
+    <title>Gestionnaire de budget</title> 
+    <link rel="stylesheet" type="text/css" href="style.css" /> 
+    <script src="https://cdn.jsdelivr.net/npm/ag-charts-community/dist/umd/ag-charts-community.js"></script>
 </head> 
 
 <body> 
-	<div class="container"> 
-		<br>
-		<h1>Gestionnaire de budget</h1> 
-		<br>
+    <div class="container"> 
+        <br>
+        <h1>Gestionnaire de budget</h1> 
+        <br>
 		<form id="expense-form"> 
-			<input type="text"
-				id="expense-name"
-				placeholder="Nom du montant" required /> 
-			<input type="number"
-				id="expense-amount"
-				placeholder="Montant" required /> 
-			<button type="submit"> 
-				Ajouter montant 
-			</button> 
-		</form> 
-		<br>
-		<div class="expense-table"> 
-			<table> 
-				<thead> 
-					<tr> 
-						<th>Nom du montant</th> 
-						<th>Montant</th> 
-						<th>Action</th> 
-					</tr> 
-				</thead> 
-				<tbody id="expense-list"></tbody> 
-			</table> 
-			<div class="total-amount"> 
-				<strong>Total:</strong> 
-				$<span id="total-amount">0</span> 
-			</div> 
-		</div> 
-	</div> 
-	<script src="script.js"></script> 
+            <input type="text"
+                id="expense-name"
+                placeholder="Nom du montant" required /> 
+            <input type="number"
+                id="expense-amount"
+                placeholder="Montant" required /> 
+            <button type="submit"> 
+                Ajouter montant 
+            </button> 
+        </form> 
+        <br>
+        <div class="expense-table"> 
+            <table> 
+                <thead> 
+                    <tr> 
+                        <th>Nom du montant</th> 
+                        <th>Montant</th> 
+                        <th>Action</th> 
+                    </tr> 
+                </thead> 
+                <tbody id="expense-list"></tbody> 
+            </table> 
+            <div class="total-amount"> 
+                <strong>Total:</strong> 
+                $<span id="total-amount">0</span> 
+            </div> 
+        </div>
+		<div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+            <div class="wheel"></div>
+            <div class="hamster">
+                <div class="hamster__body">
+                    <div class="hamster__head">
+                        <div class="hamster__ear"></div>
+                        <div class="hamster__eye"></div>
+                        <div class="hamster__nose"></div>
+                    </div>
+                    <div class="hamster__limb hamster__limb--fr"></div>
+                    <div class="hamster__limb hamster__limb--fl"></div>
+                    <div class="hamster__limb hamster__limb--br"></div>
+                    <div class="hamster__limb hamster__limb--bl"></div>
+                    <div class="hamster__tail"></div>
+                </div>
+            </div>
+            <div class="spoke"></div>
+        </div>
+        <div id="pie-chart-container"></div>
+    </div> 
+    <script src="script.js"></script> 
 </body> 
 
 </html>
